@@ -18,7 +18,6 @@ function SpyScroll() {
 
   useEffect(function() {
     function onScroll() {
-      console.log('on scroll');
       setCurrentScroll(window.scrollY);
     } 
     window.addEventListener('scroll', onScroll);

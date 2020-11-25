@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 
 function Counter() {
   const [count, setCount] = useState(0);
-
   useEffect(function() {
     if (count % 3 === 0 && count !== 0) {
       alert('Múltiplo de 3');

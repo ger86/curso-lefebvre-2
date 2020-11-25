@@ -1,17 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
+import useCount from 'hooks/useCount';
 
 function TwoCounters() {
   const [developer] = useState({name: 'Gerardo'});
-  const [count, setCount] = useState(0);
-  const [otherCount, setOtherCount] = useState(0);
-
-  function incrementCount() {
-    setCount(count + 1);
-  }
-  function incrementOtherCount() {
-    setOtherCount(otherCount + 1);
-  }
+  const [count, increment] = useCount(0);
+  const [otherCount, incrementOther] = useCount(0);
 
   useEffect(function() {
     if (count % 3 === 0 && count !== 0) {
@@ -22,9 +16,9 @@ function TwoCounters() {
   return (
     <div>
       <p>Valor actual del contador: {count}</p>
-      <button onClick={incrementCount}>Incrementar</button>
+      <button onClick={increment}>Incrementar</button>
       <p>Valor actual del otro contador: {otherCount}</p>
-      <button onClick={incrementOtherCount}>Incrementar</button>
+      <button onClick={incrementOther}>Incrementar</button>
     </div>
   );
 }

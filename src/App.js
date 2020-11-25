@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import SpyScroll from 'components/SpyScroll';
 import Users from 'components/Users';
-import Foo from 'components/Foo';
+import TwoCounters from 'components/TwoCounters';
 import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Foo />
+      <TwoCounters />
       {isScrollSpyVisible && <SpyScroll />}
       <button onClick={toggleScrollSpy}>Toggle Scroll Spy</button>
       <Users />

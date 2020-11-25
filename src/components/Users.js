@@ -1,24 +1,12 @@
 /* eslint-disable no-unused-vars */
 import {useEffect, useState} from 'react';
 import Paginator from 'components/Paginator';
+import useFetch from 'hooks/useFetch';
 
 function Users() {
   const [page, setPage] = useState(1);
-  const [json, setJson] = useState(null);
-
   const url = `https://reqres.in/api/users?page=${page}`;
-
-  useEffect(
-    function() {
-      async function fetchData() {
-        const response = await fetch(url);
-        const json = await response.json();
-        setJson(json);
-      }
-      fetchData();
-    },
-    [url]
-  );
+  const json = useFetch(url);
 
   const onChangePage = function(page) {
     setPage(page);
