@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import useScroll from 'hooks/useScroll';
 
 const style = {
   position: 'fixed',
@@ -14,20 +15,9 @@ const style = {
 
 
 function SpyScroll() {
-  const [currentScroll, setCurrentScroll] = useState(window.scrollY);
-
-  useEffect(function() {
-    function onScroll() {
-      setCurrentScroll(window.scrollY);
-    } 
-    window.addEventListener('scroll', onScroll);
-    return function cleanUp() {
-      window.removeEventListener('scroll', onScroll);
-    };
-  });
-
+  useScroll(() => alert('hola'));
   return (
-      <div style={style}>Scroll: {currentScroll}</div>
+      <div>Este es mi componente</div>
   );  
 }
 
