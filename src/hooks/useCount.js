@@ -1,11 +1,15 @@
-import {useState} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 
-export default function useCount(initialValue) {
+export default function useCount(initialValue = 0) {
   const [count, setCount] = useState(initialValue);
 
-  function incrementCount() {
-    setCount(count + 1);
-  }
+  const increment = useCallback(function() {
+    setCount(count => count + 1); 
+  }, [setCount]);
 
-  return [count, incrementCount];
+  const developer = useMemo(function() {
+    return {name: 'Gerardo'};
+  }, []);
+
+  return [count, increment, developer];
 }

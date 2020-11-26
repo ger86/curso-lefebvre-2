@@ -6,28 +6,32 @@ import useFetch from 'hooks/useFetch';
 function Users() {
   const [page, setPage] = useState(1);
   const url = `https://reqres.in/api/users?page=${page}`;
-  const json = useFetch(url);
+  const fetchState = useFetch(url);
 
   const onChangePage = function(page) {
     setPage(page);
   };
 
-  if (!json) {
-    return <p>Todavía no hay usuarios</p>;
+  if (fetchState.state === 'loading') {
+    return <p>Cargando lista de usuarios</p>;
+  }
+
+  if (fetchState.state === 'error') {
+    return <p>{fetchState.error.message}</p>;
   }
 
   return (
     <div>
       <h2>Usuarios de la página {page}</h2>
       <ul>
-        {json.data.map(user => (
+        {fetchState.data.data.map(user => (
           <li key={user.id}>
             {user.first_name} {user.last_name}
           </li>
         ))}
       </ul>
       <Paginator
-        totalPages={json.total_pages}
+        totalPages={fetchState.data.total_pages}
         withExtraButtons
         onChangePage={onChangePage}
       />
